@@ -1,0 +1,4 @@
+env
+node_modules
+webapp/static
+db.sqlite3

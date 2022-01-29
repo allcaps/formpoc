@@ -1,0 +1,22 @@
+{% load static manifest %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>
+            {% block title %}
+            {% endblock %}
+        </title>
+        {% block css %}
+        <link rel="stylesheet" href="{% manifest 'main.css' %}">
+        {% endblock %}
+    </head>
+    <body>
+        <main role="main" class="container">
+            {% block content %}
+            {% endblock %}
+        </main>
+        <script src="{% manifest 'main.js' %}"></script>
+    </body>
+</html>
