@@ -37,17 +37,23 @@ class ContactForm(forms.Form):
         cc_myself = cleaned_data.get("cc_myself")
         subject = cleaned_data.get("subject")
 
-        if cc_myself and subject:
-            # Only do something if both fields are valid so far.
-            if "help" not in subject:
-                # Form level validation (clean)
-                raise ValidationError(
-                    "Did not send for 'help' in the subject despite "
-                    "CC'ing yourself."
-                )
+        # Validation is triggered on field blur.
+        # The validation is only on the current field.
+        # This means the following concepts need additional work:
+        # - Fields that depend on each other
+        # - Form level errors
 
-        if cc_myself and subject and "help!!!" not in subject:
-            msg = "Must put 'help!!!' in subject when cc'ing yourself."
-            # Form level (clien), with errors on fields
+        # if cc_myself and subject:
+        #     # Only do something if both fields are valid so far.
+        #     if "help" not in subject:
+        #         # Form level validation (clean)
+        #         raise ValidationError(
+        #             "Did not send for 'help' in the subject despite "
+        #             "CC'ing yourself."
+        #         )
+
+        if cc_myself and subject and "help" not in subject:
+            msg = "Must put 'help' in subject when cc'ing yourself."
+            # Form level (clean), with errors on fields
             self.add_error('cc_myself', msg)
             self.add_error('subject', msg)
