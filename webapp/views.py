@@ -18,11 +18,8 @@ class ContactFormView(FormView):
         field_name = request.POST.get("__field_name__")
         form = self.form_class(request.POST)
         form.is_valid()
-        # TODO, Pseudo code...
-        field_is_valid = field_name in form.errors
-        errors = [] if field_is_valid else form.errors[field_name]
+        errors = form.errors.get(field_name, [])
         return JsonResponse({
             "__field_name__": field_name,
-            "is_valid": field_is_valid,
             "errors": errors,
         })
