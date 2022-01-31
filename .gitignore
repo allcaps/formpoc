@@ -3,3 +3,5 @@ env
 node_modules
 webapp/static
 db.sqlite3
+.idea
+.python-version
