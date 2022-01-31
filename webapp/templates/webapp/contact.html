@@ -1,11 +1,17 @@
 {% extends "base.html" %}
-{% load crispy_forms_tags %}
+{% load crispy_forms_tags webapp_tags %}
 
 {% block content %}
   <h1 class="my-5">Contact</h1>
-  <form method="post" novalidate>
+  <form id="contact-from" method="post" autocomplete="off" novalidate>
     {% csrf_token %}
     {% crispy form %}
     <button type="submit" class="btn btn-primary">Submit</button>
   </form>
+  <script class="js-form-config" type="application/json">
+    {
+        "formId": "contact-from",
+        "validationUrl": "{% url 'webapp:contact_form' %}",
+    }
+  </script>
 {% endblock %}
