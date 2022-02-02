@@ -3,15 +3,8 @@
 
 {% block content %}
   <h1 class="my-5">Contact</h1>
-  <form id="contact-from" method="post" autocomplete="off" novalidate>
-    {% csrf_token %}
+  <form method="post" autocomplete="off" novalidate>
     {% crispy form %}
     <button type="submit" class="btn btn-primary">Submit</button>
   </form>
-  <script class="js-form-config" type="application/json">
-    {
-        "formId": "contact-from",
-        "validationUrl": "{% url 'webapp:home' %}",
-    }
-  </script>
 {% endblock %}
